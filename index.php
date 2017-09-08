@@ -12,20 +12,29 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/materialize.min.css.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
+
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
       <?php
 
     include "php/header.php";
+?>
+<main class ="row container">
 
+
+
+<?php
     if (!isset($_POST['nom'])) {
-    include "php/listeProduit.php";
+    include "php/listProduct.php";
     } else {
-    include "php/detailProduit.php";
+    include "php/detailProduct.php";
     }
+     ?>
+</main>
 
+<?php
     include "php/footer.php";
 
 
