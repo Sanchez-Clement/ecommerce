@@ -1,4 +1,40 @@
-#logo {
+#logoimage {
   width: 200px;
 
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#entete {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+h2,h3 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+hr {
+border: 1px dashed #cddc39
+}
+
+#detail {
+  margin: 0 auto;
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#designed {
+  text-align: center;
+  margin: 0 auto;
 }
