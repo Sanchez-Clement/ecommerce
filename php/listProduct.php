@@ -3,8 +3,7 @@
 include "arrayProduct.php";
 
 foreach ($produits as $element => $value) {
-
- ?>
+    ?>
 
 
 
@@ -15,7 +14,7 @@ foreach ($produits as $element => $value) {
 
           <form  action="index.php" method="post">
             <input type="hidden" name="nom" value="<?php echo $element?>">
-    <button type="submit" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue darken-4" ><i   class="material-icons">add</i></button>
+            <button type="submit" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue darken-4" ><i   class="material-icons">add</i></button>
           </form>
 
 
