@@ -23,8 +23,10 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-      <?php
 
+
+
+<?php  
     include "php/header.php";
 ?>
 <main class ="row container">
