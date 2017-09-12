@@ -46,8 +46,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root
 
 <?php
     include "php/footer.php";
-
-
            ?>
 </main>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

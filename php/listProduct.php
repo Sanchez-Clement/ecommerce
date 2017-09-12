@@ -1,15 +1,8 @@
 
 
-
       <?php
-// $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root');
-// $reponse = $bdd->query('SELECT * FROM informatique');
-//
-// while ($value = $reponse->fetch())
-include "php/arrayProduct.php";
-foreach ($produits as $key => $value)
-
-
+$reponse = $bdd->query('SELECT * FROM informatique');
+while ($value = $reponse->fetch())
 {
 ?>
 
@@ -21,7 +14,7 @@ foreach ($produits as $key => $value)
           <img src="<?php echo $value["source"]?>">
 
           <form  action="index.php" method="post">
-            <input type="hidden" name="nom" value="<?php echo $key?>">
+            <input type="hidden" name="id" value="<?php echo $value["id"]?>">
             <button type="submit" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue darken-4" ><i   class="material-icons">add</i></button>
           </form>
 
@@ -42,9 +35,6 @@ foreach ($produits as $key => $value)
 ?>
 
 <?php
-
-
 // $reponse->closeCursor();
  // Termine le traitement de la requête
-
 ?>
