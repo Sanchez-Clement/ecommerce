@@ -6,6 +6,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root
 $reponse = $bdd->query('SELECT * FROM informatique');
 
 while ($value = $reponse->fetch())
+
+
+
 {
 ?>
 
@@ -17,7 +20,7 @@ while ($value = $reponse->fetch())
           <img src="<?php echo $value["source"]?>">
 
           <form  action="index.php" method="post">
-            <input type="hidden" name="nom" value="<?php echo $value["id"]?>">
+            <input type="hidden" name="nom" value="<?php echo $key?>">
             <button type="submit" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue darken-4" ><i   class="material-icons">add</i></button>
           </form>
 
@@ -40,6 +43,7 @@ while ($value = $reponse->fetch())
 <?php
 
 
-$reponse->closeCursor(); // Termine le traitement de la requête
+// $reponse->closeCursor();
+ // Termine le traitement de la requête
 
 ?>
