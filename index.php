@@ -1,4 +1,5 @@
-<?php include "php/infoSite.php" ?>
+<?php include "php/infoSite.php"
+?>
 
 <!doctype html>
 
@@ -26,7 +27,7 @@
 
 
 
-<?php  
+<?php
     include "php/header.php";
 ?>
 <main class ="row container">
@@ -34,7 +35,8 @@
 
 
 <?php
-    if (!isset($_POST['nom'])) {
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root');
+    if (!isset($_POST['id'])) {
     include "php/listProduct.php";
     } else {
     include "php/detailProduct.php";
