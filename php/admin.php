@@ -25,16 +25,34 @@
     </head>
     <body>
 
+
 <?php
 include "header.php";
-
-if (!isset($_POST['password_user'])) {
-  include "connexion.php";
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root');
+$reponse = $bdd->query('SELECT * FROM administration');
+while ($value = $reponse->fetch()) {
+    if (!isset($_POST['password_user'])) {
+        include "connexion.php";
+    } elseif ($_POST['password_user'] =="") {
+        include "connexion.php";
+        echo "merci de renseigner un mot de passe";
+    } elseif ($_POST['pseudo'] =="") {
+        include "connexion.php";
+        echo "merci de renseigner un pseudo";
+    } elseif ($value['pseudo'] != $_POST['pseudo'] and $value['password'] != $_POST['password_user']) {
+        include "connexion.php";
+        echo "pseudo et mot de passe inconnu";
+    } elseif ($value['pseudo'] != $_POST['pseudo']) {
+        include "connexion.php";
+        echo "pseudo inconnu";
+    } elseif ($value['password'] != $_POST['password_user']) {
+        include "connexion.php";
+        echo "password inconnu";
+    } else {
+        var_dump($_POST['password_user']);
+        var_dump($_POST['pseudo']);
+    }
 }
-else {
-  echo "oui";
-}
-
  ?>
 
 
