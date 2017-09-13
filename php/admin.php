@@ -1,4 +1,7 @@
-<?php include "infoSite.php"
+<?php
+session_start();
+
+ include "infoSite.php";
 ?>
 
 <!doctype html>
@@ -26,11 +29,38 @@
     <body>
 
 
+
+<header id="entete">
+
+
+<nav class="lime">
+  <div class="nav-wrapper">
+    <a href="../index.php" class="brand-logo"><img src="../img/logo.png" alt="" id="logoimage"></a>
+
+    <ul class="right hide-on-med-and-down">
+      <li><a href=""><i class="material-icons">search</i></a></li>
+      <li><a href=""><i class="material-icons">view_module</i></a></li>
+      <li><a href="admin.php"><i class="material-icons">account_circle</i></a></li>
+      <li><a href="logout.php" ><i class="material-icons">cancel</i></a></li>
+    </ul>
+
+  </div>
+</nav>
+</header>
 <?php
-include "header.php";
 $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root');
 $reponse = $bdd->query('SELECT * FROM administration');
 while ($value = $reponse->fetch()) {
+
+
+
+  if (isset($_SESSION["pseudo"])) {
+  echo "Connecté en tant que  " . $_SESSION["pseudo"];
+} else {
+  # code...
+
+
+
     if (!isset($_POST['password_user'])) {
         include "connexion.php";
     } elseif ($_POST['password_user'] =="") {
@@ -45,14 +75,19 @@ while ($value = $reponse->fetch()) {
     } elseif ($value['pseudo'] != $_POST['pseudo']) {
         include "connexion.php";
         echo "pseudo inconnu";
-    } elseif ($value['password'] != $_POST['password_user']) {
+    } elseif ($value['password'] != sha1($_POST['password_user'])) {
         include "connexion.php";
         echo "password inconnu";
-    } else {
-        var_dump($_POST['password_user']);
-        var_dump($_POST['pseudo']);
+    }
+
+    else {
+    $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
+  header('Location: admin.php');
+    }
     }
 }
+
+
  ?>
 
 
