@@ -47,7 +47,7 @@ session_start();
   </div>
 </nav>
 </header>
-<main>
+<main class="row">
 
 
 <?php
@@ -63,13 +63,17 @@ session_start();
 
 
 
-  if (isset($_SESSION["pseudo"])) {
-  echo "Connecté en tant que  " . $_SESSION["pseudo"];?>
-  <section id="addproduct">
+  if (isset($_SESSION["pseudo"])) {?>
+
+<h6 class="col s12">  <?php   echo "Connecté en tant que  " . $_SESSION["pseudo"];?></h6>
+  <section id="addproduct" class="col s12 m6">
     <?php include "addproduct.php" ?>
   </section>
   <section id="showproduct">
-    <?php include "addproduct.php" ?>
+    <?php include "showproduct.php" ?>
+  </section>
+  <section id="adduser">
+    <?php include "adduser.php" ?>
   </section>
   <?php
 } else {

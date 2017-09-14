@@ -38,3 +38,7 @@ main {
   text-align: center;
   margin: 0 auto;
 }
+
+#addproduct form label {
+  color: black;
+}
