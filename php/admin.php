@@ -47,15 +47,31 @@ session_start();
   </div>
 </nav>
 </header>
+<main>
+
+
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root');
-$reponse = $bdd->query('SELECT * FROM administration');
-while ($value = $reponse->fetch()) {
+
+
+// verif post
+//securise
+// requete clause where pseudo mdp
+
+// si reponse existe redirige
+
+
 
 
 
   if (isset($_SESSION["pseudo"])) {
-  echo "Connecté en tant que  " . $_SESSION["pseudo"];
+  echo "Connecté en tant que  " . $_SESSION["pseudo"];?>
+  <section id="addproduct">
+    <?php include "addproduct.php" ?>
+  </section>
+  <section id="showproduct">
+    <?php include "addproduct.php" ?>
+  </section>
+  <?php
 } else {
   # code...
 
@@ -69,16 +85,25 @@ while ($value = $reponse->fetch()) {
     } elseif ($_POST['pseudo'] =="") {
         include "connexion.php";
         echo "merci de renseigner un pseudo";
-    } elseif ($value['pseudo'] != $_POST['pseudo'] and $value['password'] != $_POST['password_user']) {
-        include "connexion.php";
-        echo "pseudo et mot de passe inconnu";
-    } elseif ($value['pseudo'] != $_POST['pseudo']) {
-        include "connexion.php";
-        echo "pseudo inconnu";
-    } elseif ($value['password'] != sha1($_POST['password_user'])) {
-        include "connexion.php";
-        echo "password inconnu";
-    }
+    } else {
+
+      $pseudo = htmlspecialchars($_POST["pseudo"]);
+      $passwords = sha1($_POST["password_user"]);
+
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$reponse = $bdd->prepare('SELECT pseudo, passwords FROM administration WHERE pseudo = :pseudo AND passwords = :passwords'  );
+$reponse->execute(array(
+'pseudo' => $pseudo ,
+'passwords' => $passwords
+
+));
+$value = $reponse->fetch();
+var_dump($value);
+if (!$value) {
+  include "connexion.php";
+  echo "Connexion impossible";
+}
+
 
     else {
     $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
@@ -91,17 +116,7 @@ while ($value = $reponse->fetch()) {
  ?>
 
 
-
-<!-- <form class="" action="addProduct.php" method="post">
-<input type="text" name="titre" value="">
-<input type="text" name="accroche" value="">
-<input type="text" name="descrption" value="">
-<input type="text" name="prix" value="">
-<input type="submit" name="" value="">
-</form> -->
-
-
-
+</main>
 <?php
 include "footer.php";
  ?>
