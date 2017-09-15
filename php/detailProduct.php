@@ -1,5 +1,13 @@
 <?php
-$resq = $bdd->prepare('SELECT * FROM informatique WHERE id=?');
+
+$resq = $bdd->prepare('
+SELECT i.description description_article, i.name nom_article,  img.nom nom_image
+FROM informatique i
+INNER JOIN images img
+ON i.id = img.id_produits
+WHERE i.id = ?
+
+ ');
 $resq->execute([$_POST['id']]);
 while ($donnes = $resq->fetch()) {
 
@@ -14,18 +22,18 @@ while ($donnes = $resq->fetch()) {
 
 <section id="detail" class="col s12  m8">
 
-    <h2 class="header"><?php  echo $donnes['name'] ; ?></h2>
+    <h2 class="header"><?php  echo $donnes['nom_article'] ; ?></h2>
     <div class="card ">
       <div class="card-image">
-        <img src="<?php  echo $donnes['source'] ; ?>">
+        <img src="img/produits/<?php  echo $donnes['nom_image'] ; ?>">
       </div>
 
         <div class="card-content lime lighten-3">
-          <p><?php  echo $donnes['description'] ; ?></p>
+          <p><?php  echo $donnes['description_article'] ; ?></p>
         </div>
         <div class="card-action">
           <a href="index.php">Home</a>
-          <a href="php/addProduct.php">Ajouter produit</a>
+
         </div>
 
     </div>
@@ -33,4 +41,11 @@ while ($donnes = $resq->fetch()) {
 
 </section>
 <?php };
+
+$req = $bdd->prepare('UPDATE informatique SET vue = vue + 1 WHERE id = :id');
+$req->execute(array(
+'id' => $_POST['id'],
+
+
+));
 $resq->closeCursor(); ?>

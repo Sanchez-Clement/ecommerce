@@ -28,12 +28,13 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
-$req = $bdd->prepare('INSERT INTO informatique (description, name, accroche, prix) VALUES(:description, :name, :accroche, :prix)');
+$req = $bdd->prepare('INSERT INTO informatique (description, name, accroche, prix,auteur) VALUES(:description, :name, :accroche, :prix, :auteur)');
 $req->execute(array(
 'description' => $description,
 'name' => $nom,
 'accroche' => $accroche ,
-'prix' => $prix
+'prix' => $prix,
+'auteur' => $_SESSION["pseudo"]
 
 ));
 $idLastProduct = $bdd ->  lastInsertId();

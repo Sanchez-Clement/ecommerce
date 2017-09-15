@@ -1,4 +1,4 @@
-<h6>Top des ventes</h6>
+<h6>Top 5 des vues</h6>
 <table>
 
 
@@ -17,13 +17,13 @@
 
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root');
-$reponse = $bdd->query('SELECT id, name FROM informatique');
+$reponse = $bdd->query('SELECT id, name,vue FROM informatique ORDER BY vue DESC LIMIT 0 , 5');
 while ($value = $reponse->fetch())
 {
 ?>
 <tr>
   <td><?php echo $value["name"] ?></td>
-  <td>18</td>
+  <td><?php echo $value["vue"] ?></td>
 </tr>
 
 <?php } ?>

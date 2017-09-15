@@ -35,7 +35,7 @@
 
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root');
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     if (!isset($_POST['id'])) {
     include "php/listProduct.php";
     } else {
