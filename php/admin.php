@@ -77,18 +77,11 @@ session_start();
   </section>
   <?php
 } else {
-  # code...
-
+  $_SESSION['errorproduct'] =NULL;
 
 
     if (!isset($_POST['password_user'])) {
         include "connexion.php";
-    } elseif ($_POST['password_user'] =="") {
-        include "connexion.php";
-        echo "merci de renseigner un mot de passe";
-    } elseif ($_POST['pseudo'] =="") {
-        include "connexion.php";
-        echo "merci de renseigner un pseudo";
     } else {
 
       $pseudo = htmlspecialchars($_POST["pseudo"]);
@@ -102,7 +95,7 @@ $reponse->execute(array(
 
 ));
 $value = $reponse->fetch();
-var_dump($value);
+
 if (!$value) {
   include "connexion.php";
   echo "Connexion impossible";
@@ -111,6 +104,8 @@ if (!$value) {
 
     else {
     $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
+
+
   header('Location: admin.php');
     }
     }
