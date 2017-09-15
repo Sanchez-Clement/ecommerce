@@ -75,6 +75,9 @@ session_start();
   <section id="adduser" class="col s12 m6 lime lighten-3">
     <?php include "adduser.php" ?>
   </section>
+  <section id="showuser" class="col s12 m6 purple darken-3">
+    <?php include "lastProduct.php" ?>
+  </section>
   <?php
 } else {
   $_SESSION['errorproduct'] =NULL;
