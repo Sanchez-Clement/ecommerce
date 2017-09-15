@@ -2,10 +2,7 @@
 $resq = $bdd->prepare('SELECT * FROM informatique WHERE id=?');
 $resq->execute([$_POST['id']]);
 while ($donnes = $resq->fetch()) {
-//
-//
-//
-// {
+
 ?>
 
 
@@ -35,4 +32,5 @@ while ($donnes = $resq->fetch()) {
 
 
 </section>
-<?php }; ?>
+<?php };
+$resq->closeCursor(); ?>

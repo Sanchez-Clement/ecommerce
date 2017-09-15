@@ -31,7 +31,8 @@ while ($value = $reponse->fetch())
 
 
 <?php
-}
+};
+$reponse->closeCursor();
 ?>
 
 <?php

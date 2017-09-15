@@ -11,10 +11,10 @@
     <input type="text" id="prix" name="prix" value="" required>
     <label for="desc">Desciption</label>
     <textarea id="desc" name="description" required></textarea>
-    <label for="image">Formats acceptés : </label>
+    <label for="image">Formats acceptés : JPG , PNG , SVG</label>
     <input id="image" type="file" name="image" required>
     <input type="submit" name="" value="Ajouter">
     <p><?php echo $_SESSION['errorproduct']; ?></p>
-    <?php var_dump($_SESSION['errorproduct']) ?>
+    
   </form>
 </div>
