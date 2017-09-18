@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 <?php include "infoSite.php"
+=======
+<?php
+session_start();
+
+ include "infoSite.php";
+>>>>>>> database
 ?>
 
 <!doctype html>
@@ -25,6 +32,7 @@
     </head>
     <body>
 
+<<<<<<< HEAD
 <?php
 include "header.php";
 
@@ -49,6 +57,107 @@ else {
 
 
 
+=======
+
+
+<header id="entete">
+
+
+<nav class="lime">
+  <div class="nav-wrapper">
+    <a href="../index.php" class="brand-logo"><img src="../img/logo.png" alt="" id="logoimage"></a>
+<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href=""><i class="material-icons">search</i></a></li>
+      <li><a href=""><i class="material-icons">view_module</i></a></li>
+      <li><a href="admin.php"><i class="material-icons">account_circle</i></a></li>
+      <?php if (isset($_SESSION['pseudo'])) { ?>
+      <li><a href="logout.php" ><i class="material-icons">cancel</i></a></li>
+      <?php } ?>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href=""><i class="material-icons">search</i></a></li>
+      <li><a href=""><i class="material-icons">view_module</i></a></li>
+      <li><a href="admin.php"><i class="material-icons">account_circle</i></a></li>
+      <li><a href="logout.php" ><i class="material-icons">cancel</i></a></li>
+    </ul>
+
+  </div>
+</nav>
+</header>
+<main id ="mainadmin" class="row">
+
+
+<?php
+
+
+// verif post
+//securise
+// requete clause where pseudo mdp
+
+// si reponse existe redirige
+
+
+
+
+
+  if (isset($_SESSION["pseudo"])) {?>
+
+<h6 class="col s12">  <?php   echo "Connecté en tant que  " . $_SESSION["pseudo"];?></h6>
+  <section id="addproduct" class="col s12 m6 purple darken-3">
+    <?php include "addproduct.php" ?>
+  </section>
+  <section id="showproduct" class="col s12 m6 purple darken-3">
+    <?php include "showproduct.php" ?>
+  </section>
+  <section id="adduser" class="col s12 m6 purple darken-3">
+    <?php include "adduser.php" ?>
+  </section>
+  <section id="showuser" class="col s12 m6 purple darken-3">
+    <?php include "lastProduct.php" ?>
+  </section>
+  <?php
+} else {
+  $_SESSION['errorproduct'] =NULL;
+
+
+    if (!isset($_POST['password_user'])) {
+        include "connexion.php";
+    } else {
+
+      $pseudo = htmlspecialchars($_POST["pseudo"]);
+      $passwords = sha1($_POST["password_user"]);
+
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$reponse = $bdd->prepare('SELECT pseudo, passwords FROM administration WHERE pseudo = :pseudo AND passwords = :passwords'  );
+$reponse->execute(array(
+'pseudo' => $pseudo ,
+'passwords' => $passwords
+
+));
+$value = $reponse->fetch();
+
+if (!$value) {
+  include "connexion.php";
+  echo "Connexion impossible";
+}
+
+
+    else {
+    $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
+
+
+  header('Location: admin.php');
+    }
+    }
+}
+
+
+ ?>
+
+
+</main>
+>>>>>>> database
 <?php
 include "footer.php";
  ?>

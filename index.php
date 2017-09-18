@@ -1,4 +1,6 @@
-<?php include "php/infoSite.php" ?>
+<?php session_start();
+include "php/infoSite.php"
+?>
 
 <!doctype html>
 
@@ -23,8 +25,10 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-      <?php
 
+
+
+<?php
     include "php/header.php";
 ?>
 <main class ="row container">
@@ -32,7 +36,8 @@
 
 
 <?php
-    if (!isset($_POST['nom'])) {
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    if (!isset($_POST['id'])) {
     include "php/listProduct.php";
     } else {
     include "php/detailProduct.php";
@@ -42,8 +47,6 @@
 
 <?php
     include "php/footer.php";
-
-
            ?>
 </main>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>

@@ -32,9 +32,36 @@ border: 1px dashed #cddc39
 main {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-around;
+  min-height: 74vh;
 }
 
 #designed {
   text-align: center;
   margin: 0 auto;
+}
+
+/*#addproduct form label {
+  color: black;
+}*/
+
+#addproduct , #showproduct, #adduser, #showuser {
+  color: white;
+  border: 5px solid #cddc39;
+}
+
+h6 {
+  color: #cddc39;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+#mainadmin {
+  margin-bottom: 0;
+}
+
+#formulaire {
+max-height: 50vh;
+  margin: 20Px auto;
 }
