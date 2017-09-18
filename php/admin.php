@@ -36,8 +36,16 @@ session_start();
 <nav class="lime">
   <div class="nav-wrapper">
     <a href="../index.php" class="brand-logo"><img src="../img/logo.png" alt="" id="logoimage"></a>
-
-    <ul class="right hide-on-med-and-down">
+<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href=""><i class="material-icons">search</i></a></li>
+      <li><a href=""><i class="material-icons">view_module</i></a></li>
+      <li><a href="admin.php"><i class="material-icons">account_circle</i></a></li>
+      <?php if (isset($_SESSION['pseudo'])) { ?>
+      <li><a href="logout.php" ><i class="material-icons">cancel</i></a></li>
+      <?php } ?>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
       <li><a href=""><i class="material-icons">search</i></a></li>
       <li><a href=""><i class="material-icons">view_module</i></a></li>
       <li><a href="admin.php"><i class="material-icons">account_circle</i></a></li>
@@ -47,7 +55,7 @@ session_start();
   </div>
 </nav>
 </header>
-<main class="row">
+<main id ="mainadmin" class="row">
 
 
 <?php
@@ -69,10 +77,10 @@ session_start();
   <section id="addproduct" class="col s12 m6 purple darken-3">
     <?php include "addproduct.php" ?>
   </section>
-  <section id="showproduct" class="col s12 m6 lime lighten-3">
+  <section id="showproduct" class="col s12 m6 purple darken-3">
     <?php include "showproduct.php" ?>
   </section>
-  <section id="adduser" class="col s12 m6 lime lighten-3">
+  <section id="adduser" class="col s12 m6 purple darken-3">
     <?php include "adduser.php" ?>
   </section>
   <section id="showuser" class="col s12 m6 purple darken-3">

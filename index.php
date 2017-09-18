@@ -1,4 +1,5 @@
-<?php include "php/infoSite.php"
+<?php session_start();
+include "php/infoSite.php"
 ?>
 
 <!doctype html>

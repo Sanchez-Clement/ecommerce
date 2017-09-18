@@ -19,7 +19,7 @@
       </div>
       <div class="input-field ">
     <label for="desc">Desciption</label>
-    <textarea id="desc" name="description" required></textarea>
+    <textarea class="materialize-textarea" id="desc" name="description" required></textarea>
       </div>
 
     <input id="image" type="file" name="image" required>
