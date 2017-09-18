@@ -1,27 +1,13 @@
 
 
-<<<<<<< HEAD
-
-      <?php
-// $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root');
-// $reponse = $bdd->query('SELECT * FROM informatique');
-//
-// while ($value = $reponse->fetch())
-include "php/arrayProduct.php";
-foreach ($produits as $key => $value)
-
-
-=======
       <?php
 $reponse = $bdd->query('
 SELECT i.id id_article, i.name nom_article, i.accroche accroche_artcile, img.nom nom_image
 FROM informatique i
 INNER JOIN images img
 ON i.id = img.id_produits
-
  ');
 while ($value = $reponse->fetch())
->>>>>>> database
 {
 ?>
 
@@ -33,11 +19,7 @@ while ($value = $reponse->fetch())
           <img src="img/produits/<?php echo $value["nom_image"]?>">
 
           <form  action="index.php" method="post">
-<<<<<<< HEAD
-            <input type="hidden" name="nom" value="<?php echo $key?>">
-=======
             <input type="hidden" name="id" value="<?php echo $value["id_article"]?>">
->>>>>>> database
             <button type="submit" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue darken-4" ><i   class="material-icons">add</i></button>
           </form>
 
@@ -61,12 +43,4 @@ $reponse->closeCursor();
 <?php
 // $reponse->closeCursor();
  // Termine le traitement de la requête
-?>
-
-<?php
-
-
-// $reponse->closeCursor();
- // Termine le traitement de la requête
-
 ?>

@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-<?php include "infoSite.php"
-=======
 <?php
 session_start();
-
  include "infoSite.php";
->>>>>>> database
 ?>
 
 <!doctype html>
@@ -32,32 +27,6 @@ session_start();
     </head>
     <body>
 
-<<<<<<< HEAD
-<?php
-include "header.php";
-
-if (!isset($_POST['password_user'])) {
-  include "connexion.php";
-}
-else {
-  echo "oui";
-}
-
- ?>
-
-
-
-<!-- <form class="" action="addProduct.php" method="post">
-<input type="text" name="titre" value="">
-<input type="text" name="accroche" value="">
-<input type="text" name="descrption" value="">
-<input type="text" name="prix" value="">
-<input type="submit" name="" value="">
-</form> -->
-
-
-
-=======
 
 
 <header id="entete">
@@ -89,18 +58,10 @@ else {
 
 
 <?php
-
-
 // verif post
 //securise
 // requete clause where pseudo mdp
-
 // si reponse existe redirige
-
-
-
-
-
   if (isset($_SESSION["pseudo"])) {?>
 
 <h6 class="col s12">  <?php   echo "Connecté en tant que  " . $_SESSION["pseudo"];?></h6>
@@ -119,45 +80,32 @@ else {
   <?php
 } else {
   $_SESSION['errorproduct'] =NULL;
-
-
     if (!isset($_POST['password_user'])) {
         include "connexion.php";
     } else {
-
       $pseudo = htmlspecialchars($_POST["pseudo"]);
       $passwords = sha1($_POST["password_user"]);
-
 $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $reponse = $bdd->prepare('SELECT pseudo, passwords FROM administration WHERE pseudo = :pseudo AND passwords = :passwords'  );
 $reponse->execute(array(
 'pseudo' => $pseudo ,
 'passwords' => $passwords
-
 ));
 $value = $reponse->fetch();
-
 if (!$value) {
   include "connexion.php";
   echo "Connexion impossible";
 }
-
-
     else {
     $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
-
-
   header('Location: admin.php');
     }
     }
 }
-
-
  ?>
 
 
 </main>
->>>>>>> database
 <?php
 include "footer.php";
  ?>
@@ -177,4 +125,4 @@ include "footer.php";
      ga('create','UA-XXXXX-X','auto');ga('send','pageview');
  </script>
  </body>
- </html>
+</html>
