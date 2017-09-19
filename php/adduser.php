@@ -1,3 +1,5 @@
+<!-- permet de créer un nouvel admin -->
+
 <h6>Créer nouvel admin</h6>
 <form class="" action="adduser_post.php" method="post">
   <div class="input-field">

@@ -1,6 +1,8 @@
 <?php
 $userName = htmlspecialchars($_POST['userName']);
 $userPassword = htmlspecialchars($_POST['userPassword']);
+
+// ajoute le nouvel admin à la table administration 
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

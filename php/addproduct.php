@@ -1,5 +1,5 @@
 
-
+<!-- formulaire pour ajouter un produit , est redirigé vers addproduct_post -->
 
 
   <form action="addproduct_post.php" method="post" enctype="multipart/form-data">

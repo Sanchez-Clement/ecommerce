@@ -1,5 +1,5 @@
 
-
+<!-- Jointure entre la table image et la table informatique  -->
       <?php
 $reponse = $bdd->query('
 SELECT i.id id_article, i.name nom_article, i.accroche accroche_artcile, img.nom nom_image
