@@ -1,3 +1,5 @@
+
+<!-- jointure entre la table informatique et image -->
 <?php
 
 $resq = $bdd->prepare('
@@ -16,8 +18,7 @@ while ($donnes = $resq->fetch()) {
 
 
 <?php
-// echo $_POST['nom'];
-// $index_produit = $_POST['nom'];
+
  ?>
 
 <section id="detail" class="col s12  m8">
@@ -41,7 +42,7 @@ while ($donnes = $resq->fetch()) {
 
 </section>
 <?php };
-
+// requete pour mettre à jour le nombre de vue +1
 $req = $bdd->prepare('UPDATE informatique SET vue = vue + 1 WHERE id = :id');
 $req->execute(array(
 'id' => $_POST['id'],

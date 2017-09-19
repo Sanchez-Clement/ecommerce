@@ -33,14 +33,14 @@ include "php/infoSite.php"
 ?>
 <main class ="row container">
 
-
+<!-- requete pour se connecter à la BDD produits puis à la table informatique. Affiche soit la liste des produits soit le détail des produits. -->
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     if (!isset($_POST['id'])) {
-    include "php/listProduct.php";
+        include "php/listProduct.php";
     } else {
-    include "php/detailProduct.php";
+        include "php/detailProduct.php";
     }
      ?>
 </main>

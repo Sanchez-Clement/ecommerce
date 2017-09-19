@@ -14,7 +14,7 @@
 
 
 
-
+<!-- requete pour récuperer les 5 articles avec le plus grand nombre de vues -->
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root','root');
 $reponse = $bdd->query('SELECT id, name,vue FROM informatique ORDER BY vue DESC LIMIT 0 , 5');

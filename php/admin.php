@@ -1,3 +1,4 @@
+<!-- page d"administration du site -->
 <?php
 session_start();
  include "infoSite.php";
@@ -40,9 +41,11 @@ session_start();
       <li><a href=""><i class="material-icons">search</i></a></li>
       <li><a href=""><i class="material-icons">view_module</i></a></li>
       <li><a href="admin.php"><i class="material-icons">account_circle</i></a></li>
-      <?php if (isset($_SESSION['pseudo'])) { ?>
+      <?php if (isset($_SESSION['pseudo'])) {
+    ?>
       <li><a href="logout.php" ><i class="material-icons">cancel</i></a></li>
-      <?php } ?>
+      <?php
+} ?>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><a href=""><i class="material-icons">search</i></a></li>
@@ -58,13 +61,11 @@ session_start();
 
 
 <?php
-// verif post
-//securise
-// requete clause where pseudo mdp
-// si reponse existe redirige
-  if (isset($_SESSION["pseudo"])) {?>
+// si une session existe alors j'affiche les 4 modules d'administration
+  if (isset($_SESSION["pseudo"])) {
+      ?>
 
-<h6 class="col s12">  <?php   echo "Connecté en tant que  " . $_SESSION["pseudo"];?></h6>
+<h6 class="col s12">  <?php   echo "Connecté en tant que  " . $_SESSION["pseudo"]; ?></h6>
   <section id="addproduct" class="col s12 m6 purple darken-3">
     <?php include "addproduct.php" ?>
   </section>
@@ -78,35 +79,42 @@ session_start();
     <?php include "lastProduct.php" ?>
   </section>
   <?php
-} else {
-  $_SESSION['errorproduct'] =NULL;
-    if (!isset($_POST['password_user'])) {
-        include "connexion.php";
-    } else {
-      $pseudo = htmlspecialchars($_POST["pseudo"]);
-      $passwords = sha1($_POST["password_user"]);
-$bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-$reponse = $bdd->prepare('SELECT pseudo, passwords FROM administration WHERE pseudo = :pseudo AND passwords = :passwords'  );
-$reponse->execute(array(
+  } else {
+      $_SESSION['errorproduct'] =null;
+      // Si il n'ya pas eu de tentative de connexion on affiche module de conexion
+
+      if (!isset($_POST['password_user'])) {
+          include "connexion.php";
+      } else {
+          $pseudo = htmlspecialchars($_POST["pseudo"]);
+          $passwords = sha1($_POST["password_user"]);
+
+          // cryptage du password en SHA1
+          // verification si correspondance entre le password et le username
+          $bdd = new PDO('mysql:host=localhost;dbname=Produits;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+          $reponse = $bdd->prepare('SELECT pseudo, passwords FROM administration WHERE pseudo = :pseudo AND passwords = :passwords');
+          $reponse->execute(array(
 'pseudo' => $pseudo ,
 'passwords' => $passwords
 ));
-$value = $reponse->fetch();
-if (!$value) {
-  include "connexion.php";
-  echo "Connexion impossible";
-}
-    else {
-    $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
-  header('Location: admin.php');
-    }
-    }
-}
+          $value = $reponse->fetch();
+          if (!$value) {
+              include "connexion.php";
+              echo "Connexion impossible";
+          } else {
+              // si correspondance on enregistre le pseudo
+
+              $_SESSION["pseudo"]= htmlspecialchars($_POST['pseudo']);
+              header('Location: admin.php');
+          }
+      }
+  }
  ?>
 
 
 </main>
 <?php
+
 include "footer.php";
  ?>
  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
